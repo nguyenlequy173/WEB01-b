@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package controller;
 
 import java.io.IOException;
@@ -30,24 +34,25 @@ public class MainController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
         String action = request.getParameter("action");
-        String url = "login";
-         
-        if(action.equals("login")){
+        String url = "";
+        if (action == null) {
+            url = "login.jsp";
+        } else if (action.equals("login")) {
             url = "LoginController";
-        }else if(action.equals("logout")){
+        } else if (action.equals("logout")) {
             url = "LogoutController";
-        }else if(action.equals("search")){
+        } else if (action.equals("search")) {
             url = "SearchController";
-        }else if(action.equals("deleteUniversity")){
+        } else if (action.equals("deleteUniversity")) {
             url = "DeleteUniversityController";
         }
-        
+
         // Chuyen trang
         RequestDispatcher rd = request.getRequestDispatcher(url);
         rd.forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

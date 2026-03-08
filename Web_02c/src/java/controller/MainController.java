@@ -37,14 +37,12 @@ public class MainController extends HttpServlet {
             out.println("<title>Servlet MainController</title>");            
             out.println("</head>");
             out.println("<body>");
-             String txtUsername = request.getParameter("txtUsername");
-            String txtPassword = request.getParameter("txtPassword");
-            if(txtUsername.equalsIgnoreCase("admin")
-               && txtPassword.equals("admin")){
-                out.println("Dang nhap thanh cong!");
-            }else{
-                out.println("Dang nhap that bai! Sai username hoac password.");
-            }
+             String txtUsername=request.getParameter("txtUsername");
+             String txtPassword=request.getParameter("txtPassword");
+             if(txtUsername.equals("admin") && txtPassword.equals("admin"))
+                 out.println("OK");
+             else 
+                 out.println("fail");
             out.println("</body>");
             out.println("</html>");
         }

@@ -1,4 +1,5 @@
-<%-- 
+<form action="MainController">
+</form><%-- 
     Document   : login
     Created on : Jan 8, 2026, 10:02:09 PM
     Author     : admin
@@ -12,10 +13,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-<form action="MainController" method="post">
-            Username: <input type="text" name="txtUsername" /> <br/>
-            Password: <input type="password" name="txtPassword" /> <br/>
-            <input type="submit" value="Login" />
+        <form action="MainController" method="post">
+            Username: <input type="text" name="txtUsername"/> <br/>
+            Password: <input type="password" name="txtPassword"/><br/>
+            <input type="submit" value="login"/>
         </form>
     </body>
 </html>
+

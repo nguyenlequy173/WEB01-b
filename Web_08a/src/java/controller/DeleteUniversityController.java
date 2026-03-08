@@ -31,36 +31,33 @@ public class DeleteUniversityController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        String keywords = request.getParameter("keywords");
-        String id = request.getParameter("id");
+                String keywords = request.getParameter("keywords");
         if (keywords == null) {
             keywords = "";
         }
+
+        String id = request.getParameter("id");
         if (id == null) {
             id = "";
         }
-
-        System.out.println(keywords);
+       
         UniversityDAO udao = new UniversityDAO();
-        // Xoa
-        if (!id.isEmpty()) {
-            boolean check = udao.softDelete(id);
-            if(check)
-                request.setAttribute("msg", "Deleted!");
-            else
-                request.setAttribute("msg", "Error, can not delete: "+id);
-        }
 
+        // Xoa
+       
         // Tim kiem
         ArrayList<UniversityDTO> list = new ArrayList<>();
         if (keywords.trim().length() > 0) {
             list = udao.filterByName(keywords);
+        }        if(!id.isEmpty() && id != null){
+            udao.softDelete(id);
         }
+
         request.setAttribute("list", list);
         request.setAttribute("keywords", keywords);
-        String url = "search.jsp";
-        RequestDispatcher rd = request.getRequestDispatcher(url);
-        rd.forward(request, response);
+       
+      RequestDispatcher rd= request.getRequestDispatcher("MainController?action=search&keywords" + keywords);
+      rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

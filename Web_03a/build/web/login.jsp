@@ -14,15 +14,13 @@
     </head>
     <body>
         <form action="MainController" method="post">
-            Username: <input type="text" name="txtUsername" /> <br/>
-            Password: <input type="password" name="txtPassword" /> <br/>
-            <input type="submit" value="Login" />
+            Username: <input type="text" name="txtUsername"/> <br/>
+            Password: <input type="text" name="txtPassword"/> <br/>
+            <input type="submit" value="login"/>
         </form>
-        <%
-            String message = request.getAttribute("message")+"";
-            message = (message.equals("null"))?"":message;
-        %>
-        <span style="color:red"><%=message%></span>
+            <% String message= request.getParameter("message")+"";
+            message=(message.equals("null")?"":message);
+            %>
         
     </body>
 </html>

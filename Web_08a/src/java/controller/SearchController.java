@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package controller;
 
 import java.io.IOException;
@@ -38,7 +42,7 @@ public class SearchController extends HttpServlet {
 
         System.out.println(keywords);
         UniversityDAO udao = new UniversityDAO();
-        ArrayList<UniversityDTO> list = null;
+        ArrayList<UniversityDTO> list = new ArrayList<>();
         if (keywords.trim().length() > 0) {
             list = udao.filterByName(keywords);
         }

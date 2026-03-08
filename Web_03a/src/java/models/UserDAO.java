@@ -11,28 +11,31 @@ import java.util.ArrayList;
  * @author tungi
  */
 public class UserDAO {
-    ArrayList<UserDTO> list = new ArrayList<>();
+
+    public ArrayList<UserDTO> list = new ArrayList<>();
 
     public UserDAO() {
-        list.add(new UserDTO("admin", "admin", "Nguyen Van A"));
-        list.add(new UserDTO("user1", "user1", "Nguyen Van B"));
+        list.add(new UserDTO("admin", "admin", "nguyen van a"));
+        list.add(new UserDTO("admin1", "admin2", "nguyen van b"));
     }
-    
-    public UserDTO searchById(String id){
+
+    public UserDTO searchByID(String username) {
         for (UserDTO userDTO : list) {
-            if(userDTO.getUsername().equalsIgnoreCase(id)){
+            if (userDTO.getUsername().equalsIgnoreCase(username)) {
                 return userDTO;
             }
+
         }
         return null;
     }
-    
-    public UserDTO login(String username, String password){
-        UserDTO user = searchById(username);
-        if (user!=null && user.getPassword().equals(password))
-            return user;
-        else
+
+    public UserDTO login(String username, String password) {
+        UserDTO u = searchByID(username);
+        if (u != null && u.getPassword().equals(password)) {
+            return u;
+        } else {
             return null;
+        }
     }
-    
+
 }

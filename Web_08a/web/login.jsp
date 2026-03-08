@@ -4,6 +4,7 @@
     Author     : admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,15 +13,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-                <form action="MainController" method="post">
+        <form action="MainController" method="post">
             <input type="hidden" name="action" value="login"/>
-            Username: <input type="text" name="txtUsername" required="required" /> <br/>
-            Password: <input type="password" name="txtPassword" required="required"  /> <br/>
-            <input type="submit" value="login" />
+            Username: <input type="text" name="txtUsername" required="required"/>
+            Password: <input type="password" name="txtPassword" required="required"/><!-- comment -->
+            <input type="submit" value="Login"/>
         </form>
-        <c:if test="not empty message">
-            ${message}
+        <c:if test="${not empty message}">
+            <span style="color:red">${message}</span>
         </c:if>
-
     </body>
 </html>

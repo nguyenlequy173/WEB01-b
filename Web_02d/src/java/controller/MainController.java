@@ -50,7 +50,8 @@ public class MainController extends HttpServlet {
                 url = "b.jsp";
             }
             
-            RequestDispatcher rd = request.getRequestDispatcher(url);
+            
+            RequestDispatcher rd= request.getRequestDispatcher(url);
             rd.forward(request, response);
             
             out.println("</body>");

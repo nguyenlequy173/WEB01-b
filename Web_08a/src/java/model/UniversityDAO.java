@@ -1,4 +1,3 @@
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -54,9 +53,9 @@ public class UniversityDAO {
         ArrayList<UniversityDTO> result = new ArrayList<>();
         try {
             Connection conn = DbUtils.getConnection();
-            String sql = "SELECT * FROM tblUniversity WHERE status=1 AND " + column + " LIKE ?";
+            String sql = "SELECT * FROM tblUniversity WHERE   isDraft=1 AND " + column + " LIKE ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setNString(1, "%" + value + "%");
+            ps.setString(1, "%" + value + "%");
             System.out.println(ps.toString());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -81,16 +80,10 @@ public class UniversityDAO {
         }
         return result;
     }
-    public UniversityDTO searchByID(String ID){
-        ArrayList<UniversityDTO> a= searchByColum("id",ID);
-        if(a.size()<0){
-            return a.get(0);
-        }
-        return null;
-    }
 
-   
-    
+    public ArrayList<UniversityDTO> searchByID(String ID) {
+        return searchByColum("id", ID);
+    }
 
     public ArrayList<UniversityDTO> searchByName(String name) {
         return searchByColum("name", name);
@@ -101,44 +94,18 @@ public class UniversityDAO {
     }
 
     public boolean softDelete(String id) {
-        int result = 0;
         try {
             Connection conn = DbUtils.getConnection();
-            String sql = "SELECT * FROM tblUniversity " +
-"WHERE status = 1 AND name COLLATE Vietnamese_CI_AI LIKE ?";
+            String sql = "UPDATE tblUniversity SET isDraft=0 WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, id);
-            result = ps.executeUpdate();
+            System.out.println(id +"-" +sql);
+            return ps.executeUpdate() > 0;
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        return result>0;
-    }
-    public boolean add(UniversityDTO u){
-        int result=0;
-        try{
-            Connection conn=DbUtils.getConnection();
-            String sql= "INSERT into tblUniversity values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement ps=conn.prepareStatement(sql);
-            ps.setString(1,u.getId());
-            ps.setString(2,u.getName());
-            ps.setString(3,u.getShortName());
-            ps.setString(4,u.getDescription());
-            ps.setInt(5,u.getFoundedYear());
-            ps.setString(6,u.getAddress());
-            ps.setString(7,u.getCity());
-            ps.setString(8,u.getRegion());
-            ps.setString(9,u.getType());
-            ps.setInt(11,u.getTotalStudents());
-            ps.setInt(12,u.getTotalFaculties());
-            ps.setBoolean(13,u.isIsDraft());
-            ps.setBoolean(13,true);
-            result=ps.executeUpdate();
-        
-            
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }return result>0;
+        return false;
     }
 
 }
