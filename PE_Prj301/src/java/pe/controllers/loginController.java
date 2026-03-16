@@ -36,22 +36,22 @@ public class loginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
        request.setCharacterEncoding("UTF-8");
        response.setCharacterEncoding("UTF-8");
-       String txtUsername= request.getParameter("txtUsername");
-       String txtPassword= request.getParameter("txtPassword");
-       String url="login.jsp";
-       HttpSession session= request.getSession();
-  if(session.getAttribute("user")!= null){
-      url="welcome.jsp";
-  }else{
-      UserDao udao= new UserDao();
-      UserDto user= udao.login(txtUsername, txtPassword);
-      if(user == null){
-          request.setAttribute("message", "invalid username or password");
-      }else{
-          session.setAttribute("user", user);
+      String txtUsername= request.getParameter("txtUsername");
+      String txtPassword= request.getParameter("txtPassword");
+      String url="login.jsp";
+      HttpSession session= request.getSession();
+      if(session.getAttribute("user") != null){
           url="welcome.jsp";
-      }
-  }request.getRequestDispatcher(url).forward(request, response);
+      }else{
+          UserDao udao= new UserDao();
+          UserDto user= udao.login(txtUsername, txtPassword);
+              if(user== null){
+                  request.setAttribute("message", "invalid username or password");
+              }else{
+                  session.setAttribute("user", user);
+                  url="welcome.jsp";
+              }
+      }request.getRequestDispatcher(url).forward(request, response);
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

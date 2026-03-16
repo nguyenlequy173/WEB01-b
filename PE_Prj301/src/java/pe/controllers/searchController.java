@@ -36,20 +36,16 @@ public class searchController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        String keyword = request.getParameter("keyword");
-        String url = "search.jsp";
-        if (keyword == null) {
-            keyword = "";
+        String keyword= request.getParameter("keyword");
+        String url="search.jsp";
+        if(keyword== null){
+            keyword="";
+        } 
+        FashionDao fdao= new FashionDao();
+        ArrayList<FashionDto> list= new ArrayList<>();
+        if(keyword.trim().length() > 0){
+            list= searchByName(keyword);
         }
-        ArrayList<FashionDto> list = new ArrayList<>();
-        FashionDao fdao = new FashionDao();
-        if (keyword.trim().length() > 0) {
-            list = fdao.filterByName(keyword);
-        }
-        request.setAttribute("keyword", keyword);
-        request.setAttribute("list", list);
-        request.getRequestDispatcher(url).forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -90,5 +86,6 @@ public class searchController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    }
 
-}
+

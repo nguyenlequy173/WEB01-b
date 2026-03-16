@@ -10,21 +10,17 @@ package pe.model;
  * @author Computing Fundamental - HCM Campus
  */
 public class UserDto {
-    //-----            your code here   --------------------------------
- private String userID;
- private String fullName;
- private String roleID;
- private String password;
- private Boolean status;
+    private String userID, fullName, password, roleID;
+private Boolean status;
 
     public UserDto() {
     }
 
-    public UserDto(String userID, String fullName, String roleID, String password, Boolean status) {
+    public UserDto(String userID, String fullName, String password, String roleID, Boolean status) {
         this.userID = userID;
         this.fullName = fullName;
-        this.roleID = roleID;
         this.password = password;
+        this.roleID = roleID;
         this.status = status;
     }
 
@@ -44,20 +40,20 @@ public class UserDto {
         this.fullName = fullName;
     }
 
-    public String getRoleID() {
-        return roleID;
-    }
-
-    public void setRoleID(String roleID) {
-        this.roleID = roleID;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRoleID() {
+        return roleID;
+    }
+
+    public void setRoleID(String roleID) {
+        this.roleID = roleID;
     }
 
     public Boolean getStatus() {
@@ -67,4 +63,6 @@ public class UserDto {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+    //-----            your code here   --------------------------------
 }

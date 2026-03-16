@@ -19,33 +19,26 @@ import pe.utils.DbUtils;
 public class FashionDao {
 
     //-----            your code here   --------------------------------
-    public ArrayList<FashionDto> filterByColumn(String column, String value) {
+    ArrayList<FashionDto> filterByColumn(String column, String value){
         ArrayList<FashionDto> list = new ArrayList<>();
         try {
-            Connection conn = DbUtils.getConnection();
-            PreparedStatement ps = conn.prepareStatement(" SELECT * FROM tblFashion WHERE status = 1 AND " + column + " LIKE ? ");
+            Connection conn=DbUtils.getConnection();
+            PreparedStatement ps= conn.prepareStatement(" SELECT * FROM tblFashion WHERE status=1 AND" + column + " LIKE ? ");
             ps.setString(1, "%" + value + "%");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                String id = rs.getString("id");
-                String name = rs.getString("name");
-                String description = rs.getString("description");
-                Double price = rs.getDouble("price");
-                String size = rs.getString("size");
-                boolean status = rs.getBoolean("status");
-                FashionDto fashion = new FashionDto(id, name, description, price, size, status);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                String id= rs.getString("id");
+                String name= rs.getString("name");
+                String description= rs.getString("description");
+                Double price= rs.getDouble("price");
+                String size= rs.getString("size");
+                Boolean status= rs.getBoolean("status");
+                FashionDto fashion= new FashionDto(id, name, description, price, size, status);
                 list.add(fashion);
-
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        return list;
-
+        }return list;
     }
-
-    public ArrayList<FashionDto> filterByName(String name) {
-        return filterByColumn("name", name);
-    }
-
 }

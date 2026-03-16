@@ -13,12 +13,11 @@
         <title>Welcome Page</title>
     </head>
     <body>
-        <!--your code here       -->
         <c:choose>
             <c:when test="${not empty user}">
-                <h1>  welcome ${user.fullName}</h1>
-                <a href="MainController?action=logout">Logout</a> <br/>
-                <a href="search.jsp">Search</a> <br/>
+                <h1> welcome ${user.fullName}</h1>
+                <a href="MainController?action=logout">Logout</a>
+                <a href="search.jsp">Search</a>
             </c:when>
             <c:otherwise>
                 <c:redirect url="login.jsp"/>

@@ -10,17 +10,17 @@ package pe.model;
  * @author Computing Fundamental - HCM Campus
  */
 public class FashionDto {
+    private String id, name, description;
+    private Double price;
+    private String size;
+    private Boolean status;
 
     //-----            your code here   --------------------------------
-   private String id, name, description;
-   private Double price;
-   private String size;
-   private boolean status;
 
     public FashionDto() {
     }
 
-    public FashionDto(String id, String name, String description, Double price, String size, boolean status) {
+    public FashionDto(String id, String name, String description, Double price, String size, Boolean status) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -69,12 +69,11 @@ public class FashionDto {
         this.size = size;
     }
 
-    public boolean isStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
-   
-}
+ }

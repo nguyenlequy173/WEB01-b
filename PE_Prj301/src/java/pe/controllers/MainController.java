@@ -40,17 +40,16 @@ public class MainController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String url = WELCOME;
-        String action= request.getParameter("action");
-        if(action== null){
-            url="login.jsp";
-        }else if(action.equals("login")){
-            url="loginController";
-        }else if(action.equals("logout")){
-            url="logoutController";
-        }else if(action.equals("search")){
-            url="searchController";
-        }request.getRequestDispatcher(url).forward(request, response);
-        
+            String action=request.getParameter("action");
+            if(action==null){
+                url="login.jsp";
+            }else if(action.equals("login")){
+                url="loginController";
+            }else if(action.equals("logout")){
+                url="logoutController";
+            }else if(action.equals("search")){
+                url="searchController";
+            }request.getRequestDispatcher(url).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
